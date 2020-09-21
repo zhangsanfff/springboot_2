@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <script src="layui/layui.js"></script>
+</head>
+<body>
+    <table class="layui-hide" id="demo" lay-filter="test"></table>
+
+    <script>
+        layui.use(['table'], function(){
+            var table = layui.table;
+
+            //执行一个 table 实例
+            table.render({
+                elem: '#demo'
+                ,height: 420
+                ,url: 'emp/allEmp' //数据接口
+                ,title: '员工表'
+                ,page: false //开启分页
+                ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+                ,cols: [[ //表头
+                    {type: 'checkbox', fixed: 'left'}
+                    ,{field: 'empId', title: '编号', width:80}
+                    ,{field: 'empName', title: '姓名', width:120}
+                    ,{field: 'sex', title: '性别', width: 90}
+                    ,{field: 'age', title: '年龄', width:80}
+                    ,{field: 'phone', title: '电话', width: 120}
+                    ,{fixed: 'right', width: 185, align:'center', toolbar: '#barDemo'}
+                ]],
+                response:{	// 设置响应码
+                    statusCode: 200 //规定成功的状态码，layui默认值是：0
+                }
+            });
+        });
+    </script>
+</body>
+</html>
